@@ -1,6 +1,5 @@
-"use client"
 import Image from 'next/image'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Link from 'next/link'
 import { Menu, User2 } from 'lucide-react';
 import { Input } from "@/components/ui/input"
@@ -17,28 +16,30 @@ import {
 } from "@/components/ui/sheet"
 
 export default function Navbar() {
-    const [showNavbar, setShowNavbar] = useState(false);
+    // const [showNavbar, setShowNavbar] = useState(false);
 
-    useEffect(() => {
-        // Add your logic to determine when to show the navbar
-        // For example, you can use scroll events or a state change.
+    // useEffect(() => {
+    //     // Add your logic to determine when to show the navbar
+    //     // For example, you can use scroll events or a state change.
 
-        // For demonstration purposes, we'll just show the navbar after a delay.
-        setTimeout(() => {
-            setShowNavbar(true);
-        }, 1000); // Adjust the delay as needed
-    }, []);
+    //     // For demonstration purposes, we'll just show the navbar after a delay.
+    //     setTimeout(() => {
+    //         setShowNavbar(true);
+    //     }, 1000); // Adjust the delay as needed
+    // }, []);
+
+    // ${showNavbar ? 'translate-y-0' : '-translate-y-full'}
+
     return (
         <>
-            <nav className={`w-full bg-gradient-to-r from-[#47509b] to-[#414fba] md:px-9 xl:px-1 transform translate-y-[-100%] transition-transform duration-500 ease-in-out ${
-        showNavbar ? 'translate-y-0' : '-translate-y-full'
-      }`}>
+            <nav className={`w-full bg-gradient-to-r from-[#47509b] to-[#414fba] md:px-9 xl:px-1 
+    `}>
                 <div className='flex w-full mx-auto bg-slate-100 max-h-24 pl-1 pr-2 max-w-7xl justify-between md:rounded-b-2xl items-center'>
                     <Link href={"/"}>
                         <div className='flex justify-center items-center  gap-5 sm:gap-11'>
                             <div className='flex justify-center items-center'>
                                 <Image src={"/navLogo.png"} height={100} width={100} alt='LOGO' />
-                                <h1 className='text-[20px] text-gray-800 font-semibold leading-tight'>Crypto<span className='text-[#f8c632]'>-</span>Converter</h1>
+                                <h1 className='text-[20px] text-gray-800 font-semibold leading-tight'>Crypto<span className='text-[#f8c632]'>-</span>Converter <br/> </h1>
                             </div>
                             <div className='hidden sm:block'>
                                 <div className='flex gap-3'>
