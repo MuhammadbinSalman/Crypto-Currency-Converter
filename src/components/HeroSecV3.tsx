@@ -10,6 +10,7 @@ import {Popover,PopoverContent,PopoverTrigger,} from "@/components/ui/popover"
 import { Separator } from './ui/separator'
 import { type } from 'os'
 import { Input } from 'postcss'
+import Github from './Github'
 
 const HeroSecV3 = ({ labels }: any) => {
     // console.log(labels, "data argument check kru")
@@ -22,6 +23,8 @@ const HeroSecV3 = ({ labels }: any) => {
     const handleChange1 = (event: any) => {
         const newValue = event.target.value;
         if (value !== 'Select Currency...' && value2 !== 'Select Currency...') {
+            const currency1 = labels.find((currency: any) => currency.value === value);
+            const currency2 = labels.find((currency: any) => currency.value === value2);
             const multiply = result * newValue
             setInput2val(multiply)
             console.log(`Input Value Of First Input Bar ${input1val} x ${result} = ${multiply}` )
@@ -53,47 +56,28 @@ const HeroSecV3 = ({ labels }: any) => {
             if (currency1 && currency2) {
                 const value1Price = currency1.price;
                 const value2Price = currency2.price;
-                // console.log(`Price of ${currency1.label}: $${currency1.price}`);
                 const divisionResultUp = value2Price / value1Price;
                 const divisionResultDown = value1Price / value2Price;
-                // console.log(`answer = ${divisionResultUp} \n on reverse ${divisionResultDown}:`);
                 setResult(divisionResultUp);
                 setResultReverse(divisionResultDown);
-                // const calculateValue = (result * input1val).toFixed(2)
-                // console.log(`answer of the above input ${input1val} = ${SetResultAbove} 🤩^_~💋`)
-                // setInput2val(SetResultAbove.toFixed(2))
-                // console.log(`answer of the lower input ${input2val} = ${SetResultDown} 🤩^_~💋`)
-                // setInput1val(SetResultDown)
             }
         }
-    }, [value, value2,]);
-    useEffect(() => {
-        if (value !== 'Select Currency...' && value2 !== 'Select Currency...') {
-            const currency1 = labels.find((currency: any) => currency.value === value);
-            const currency2 = labels.find((currency: any) => currency.value === value2);
-            if (currency1 && currency2) {
-                    const multiply = result * input1val
-                    setInput2val(multiply)
-                    console.log(`Input Value Of First Input Bar ${input1val} x ${result} = ${multiply}` )
-
-            }
-        }
-    }, [ value]);
+    }, [value, value2,labels]);
     // console.log(answerCheck, "answer in console")
 
     return (
-        <main className='w-full bg-gradient-to-r from-[#47509b] to-[#414fba] h-[580px] flex justify-center pb-5 pt-20'>
+        <main className='w-full h-full flex justify-center pb-5 pt-20'>
             <div className='flex flex-col w-full gap-12'>
                 <div className='flex flex-col gap-4'>
-                    <h1 className='text-4xl text-white font-bold text-center'>All Crypto Currencies Converter</h1>
-                    <h3 className='text-[17px] text-white text-center px-4'>Convertion tool to convert between any crypto currency </h3>
+                    <h1 className='sm:text-4xl text-[34px] text-white font-bold text-left pl-4 sm:text-center leading-snug '>All Crypto Currencies Converter</h1>
+                    <h3 className='text-[17px] text-white sm:text-center px-4 pl-4 text-left'>Convertion tool to convert between any crypto currency </h3>
                 </div>
-                <div className='flex flex-col justify-center items-center w-full gap-3 sm:gap-8 md:gap-4 px-20 sm:px-8 md:px-64'>
-                    <div className=' flex flex-col gap-4 justify-center items-end'>
+                <div className='flex flex-col justify-center items-center w-full gap-4 sm:gap-8 md:gap-4 px-20 sm:px-6 md:px-64'>
+                    <div className=' flex flex-col gap-6 sm:gap-4 justify-center items-end'>
                         <div className=' shadow-xl'>
                             {/* <h1  className='text-xl font-semibold text-white'>{firstHeading} </h1> */}
                         </div>
-                        <div className='bg-white rounded-xl h-12 sm:h-20 shadow-lg px-3 flex items-center justify-between active:border-2 active:border-b-slate-900 w-[155px] sm:w-[380px]'>
+                        <div className='bg-white rounded-xl h-16 sm:h-20 shadow-lg px-3 flex items-center justify-between active:border-2 active:border-b-slate-900 w-[330px] sm:w-[380px]'>
                             <div className='flex gap-2 items-center'>
                                 <input className='text-left px-2 sm:px-1 w-32 sm:w-36 outline-none border-transparent sm:h-[78px] h-10 text-lg font-semibold' type="number" value={input1val} onChange={handleChange1} />
                                 <Separator orientation="vertical" className=' h-14 bg-gray-300' />
@@ -153,8 +137,8 @@ const HeroSecV3 = ({ labels }: any) => {
                             </Popover>
                         </div>
                     </div>
-                    <div className=' justify-center items-start flex flex-col gap-4'>
-                        <div className='w-[155px] sm:w-[380px] active:border-2 active:border-b-slate-900 h-12 sm:h-20 shadow-lg px-3 rounded-xl flex items-center justify-between bg-white'>
+                    <div className='justify-center sm:mt-0 mt-2 items-start flex flex-col gap-4'>
+                        <div className='w-[330px] sm:w-[380px] active:border-2 active:border-b-slate-900 h-16 sm:h-20 shadow-lg px-3 rounded-xl flex items-center justify-between bg-white'>
                             <div className='flex gap-2 items-center'>
                                 <input className='text-left px-2 sm:px-1 w-32 sm:w-36 outline-none border-transparent h-10 sm:h-[78px]  text-lg font-semibold' type='number' value={input2val} onChange={handleChange2} />
                                 <Separator orientation="vertical" className=' h-14 bg-gray-300' />
@@ -214,6 +198,7 @@ const HeroSecV3 = ({ labels }: any) => {
                     {/* <br /> {result} division <br /> {resultReverse} division reverse <br /> {answerCheck} Answer of first equation */}
                 </div>
             </div>
+                            <Github />
         </main>
     )
 }
