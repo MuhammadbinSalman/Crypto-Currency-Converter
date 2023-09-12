@@ -21,20 +21,20 @@ const HeroSecV3 = ({ labels }: any) => {
 
     const handleChange1 = (event: any) => {
         const newValue = event.target.value;
-        setInput1val(newValue);
         if (value !== 'Select Currency...' && value2 !== 'Select Currency...') {
-            const multiply = result * input1val
+            const multiply = result * newValue
             setInput2val(multiply)
             console.log(`Input Value Of First Input Bar ${input1val} x ${result} = ${multiply}` )
         }
+        setInput1val(newValue);
     }
     const handleChange2 = (event: any) => {
         const newValue = event.target.value;
-        setInput2val(newValue);
         if (value !== 'Select Currency...' && value2 !== 'Select Currency...') {
-            const multiply = resultReverse * input2val
+            const multiply = resultReverse * newValue
             setInput1val(multiply)
         }
+        setInput2val(newValue);
     }
 
     const [open, setOpen] = React.useState(false)
@@ -67,7 +67,18 @@ const HeroSecV3 = ({ labels }: any) => {
             }
         }
     }, [value, value2,]);
+    useEffect(() => {
+        if (value !== 'Select Currency...' && value2 !== 'Select Currency...') {
+            const currency1 = labels.find((currency: any) => currency.value === value);
+            const currency2 = labels.find((currency: any) => currency.value === value2);
+            if (currency1 && currency2) {
+                    const multiply = result * input1val
+                    setInput2val(multiply)
+                    console.log(`Input Value Of First Input Bar ${input1val} x ${result} = ${multiply}` )
 
+            }
+        }
+    }, [ value]);
     // console.log(answerCheck, "answer in console")
 
     return (
@@ -145,7 +156,7 @@ const HeroSecV3 = ({ labels }: any) => {
                     <div className=' justify-center items-start flex flex-col gap-4'>
                         <div className='w-[155px] sm:w-[380px] active:border-2 active:border-b-slate-900 h-12 sm:h-20 shadow-lg px-3 rounded-xl flex items-center justify-between bg-white'>
                             <div className='flex gap-2 items-center'>
-                                <input className='text-left px-2 sm:px-1 w-32 sm:w-36 outline-none border-transparent h-10 sm:h-[78px]  text-lg font-semibold' value={input2val} onChange={handleChange2} />
+                                <input className='text-left px-2 sm:px-1 w-32 sm:w-36 outline-none border-transparent h-10 sm:h-[78px]  text-lg font-semibold' type='number' value={input2val} onChange={handleChange2} />
                                 <Separator orientation="vertical" className=' h-14 bg-gray-300' />
                             </div>
                             <Popover open={open} onOpenChange={setOpen}>
