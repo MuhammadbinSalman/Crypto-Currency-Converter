@@ -1,6 +1,6 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 ## Live Link Of Site
-[https://crypto-currency-converter.vercel.app/](crypto-currency-converter.app/)
+[crypto-currency-converter.app](https://crypto-currency-converter.vercel.app/)
 
 ## Getting Started
 
