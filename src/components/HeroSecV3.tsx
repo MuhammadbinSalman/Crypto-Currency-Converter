@@ -49,6 +49,10 @@ const HeroSecV3 = ({ labels }: any) => {
         const match = labels.find((item: any) => item.label.toLowerCase() === valueToFind.toLowerCase());
         return match ? match.value : "Select Currency...";
     }
+    function findDetailsByValue(valueToFind: any) {
+        const match = labels.find((item: any) => item.label.toLowerCase() === valueToFind.toLowerCase());
+        return match ? match : "Select Currency...";
+    }
     useEffect(() => {
         if (value !== 'Select Currency...' && value2 !== 'Select Currency...') {
             const currency1 = labels.find((currency: any) => currency.value === value);
@@ -115,7 +119,17 @@ const HeroSecV3 = ({ labels }: any) => {
                                                             setOpen2(false)
                                                             const label = findLabelByValue(currentValue);
                                                             setValue2(label);
-                                                            // console.log(label, "value coming from findLabelByValue function and going in state from dropdown😭😭😭")
+                                                            if (label !== 'Select Currency...' && value !== 'Select Currency...') {
+                                                                const currency1 = findDetailsByValue(currentValue)
+                                                                const currency2 = findDetailsByValue(value)
+                                                                if (currency1&&currency2){
+                                                                    // console.log("onchange of dropdown 😅🤩😭🤡☠😹", label, "and the other value is", value, "and both division would be, and the currenctValue is ", currency1, currency2);
+                                                                    const divisionResultUp = currency1.price / currency2.price;
+                                                                    console.log("division result ", divisionResultUp)
+                                                                    setInput2val(input1val* divisionResultUp)
+                                                                }
+                                                            } 
+                                                            console.log(label, "value coming from findLabelByValue function and going in state from dropdown😭😭😭")
                                                         }}
                                                         >
                                                         <Check
@@ -161,7 +175,7 @@ const HeroSecV3 = ({ labels }: any) => {
                                 <PopoverContent className="w-[240px] bg-white p-0">
                                     <Command>
                                         <CommandInput placeholder="Search framework..." />
-                                        <CommandEmpty>No framework found.</CommandEmpty>
+                                        <CommandEmpty>No Currency found.</CommandEmpty>
                                         <CommandGroup>
                                             <ScrollArea className="h-72 w-full pl-1 pr-3 pt-4 rounded-lg border">
                                                 {labels.map((labels: any) => (
@@ -171,6 +185,15 @@ const HeroSecV3 = ({ labels }: any) => {
                                                             setOpen(false)
                                                             const label = findLabelByValue(currentValue);
                                                             setValue(label);
+                                                            if (label !== 'Select Currency...' && value2 !== 'Select Currency...') {
+                                                                const currency1 = findDetailsByValue(currentValue)
+                                                                const currency2 = findDetailsByValue(value2)
+                                                                if (currency1&&currency2){
+                                                                    const divisionResultUp = currency2.price/currency1.price;
+                                                                    // console.log("division result ", divisionResultUp)
+                                                                    setInput2val(input2val* divisionResultUp)
+                                                                }
+                                                            } 
                                                         }}
                                                     >
                                                         <Check
@@ -193,9 +216,9 @@ const HeroSecV3 = ({ labels }: any) => {
                             {/* <Input type="email" className="rounded-lg " placeholder="Email"/> */}
                         </div>
                     </div>
-                    {/* {value2} Value  <br /> {value} Value  <br />  */}
-                    {/* {input1val} Input Value Of First Input Bar<br /> {input2val} Input Value Of Second Input Bar */}
-                    {/* <br /> {result} division <br /> {resultReverse} division reverse <br /> {answerCheck} Answer of first equation */}
+                    {/* {value2} Value  <br /> {value} Value  <br /> 
+                    {input1val} Input Value Of First Input Bar<br /> {input2val} Input Value Of Second Input Bar
+                    <br /> {result} division <br /> {resultReverse} division reverse <br /> {answerCheck} Answer of first equation */}
                 </div>
             </div>
                             <Github />
